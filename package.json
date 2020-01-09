@@ -1,0 +1,87 @@
+{
+  "name": "unexpected-moose-api",
+  "version": "1.0.0",
+  "description": "API for Unexpected Moose",
+  "main": "index.js",
+  "author": "Ozwild",
+  "license": "MIT",
+  "scripts": {
+    "check-types": "tsc",
+    "lint": "eslint \"*/**/*.{ts,js}\" --fix",
+    "start": "npm run serve:watch",
+    "serve:watch1": "nodemon",
+    "serve:watch": "nodemon --exec babel-node src/index.js",
+    "knex": "babel-node --extensions \".js,.ts\" node_modules/knex/bin/cli.js",
+    "knex-migrate": "babel-node --extensions \".js,.ts\" node_modules/knex-migrate/src/cli.js",
+    "db:init": "npm run knex -- init",
+    "db:seed:make": "npm run knex -- seed:make",
+    "db:seed": "npm run knex -- seed:run",
+    "db:migrate:make": "npm run knex -- migrate:make",
+    "db:migrate": "npm run knex -- migrate:latest",
+    "db:migrate:down": "npm run knex-migrate -- down",
+    "db:migrate:up": "npm run knex-migrate -- up",
+    "db:migrate:redo": "npm run knex-migrate -- redo --verbose",
+    "db:migrate:list": "npm run knex-migrate -- list",
+    "db:migrate:pending": "npm run knex-migrate -- pending",
+    "db:migrate:rollback": "npm run knex -- migrate:rollback",
+    "db:migrate:version": "npm run knex -- migrate:currentVersion",
+    "db:reset": "npm run db:migrate:rollback && npm run db:migrate && npm run db:seed"
+  },
+  "dependencies": {
+    "@babel/register": "^7.7.4",
+    "@hapi/boom": "8.0.1",
+    "@hapi/hapi": "^18.4.0",
+    "blipp": "^4.0.1",
+    "dotenv": "^8.2.0",
+    "good": "^8.1.2",
+    "good-console": "^8.0.0",
+    "good-squeeze": "^5.1.0",
+    "hapi-auth-jwt": "^4.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.4",
+    "moment": "^2.24.0",
+    "objection": "^2.0.4",
+    "objection-guid": "^3.0.2",
+    "pg": "^7.14.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-stage-1": "7.0.0",
+    "@babel/preset-typescript": "^7.7.4",
+    "@types/hapi__boom": "7.4.1",
+    "@types/hapi__hapi": "^18.2.6",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-typescript": "^6.3.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-eslint-comments": "^3.1.2",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jest": "^23.1.1",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-unicorn": "^14.0.1",
+    "faker": "^4.1.0",
+    "husky": "3.1.0",
+    "lint-staged": "^9.5.0",
+    "nodemon": "^2.0.1",
+    "prettier": "1.19.1",
+    "typescript": "^3.7.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
