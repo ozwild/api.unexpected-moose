@@ -39,7 +39,7 @@
     "hapi-auth-jwt": "^4.0.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "objection": "^2.0.4",
     "objection-guid": "^3.0.2",
     "pg": "^7.14.0"
